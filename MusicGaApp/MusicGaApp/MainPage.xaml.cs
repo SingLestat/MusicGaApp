@@ -19,5 +19,11 @@ namespace MusicGaApp
         {
             await Navigation.PushModalAsync(new DataForm(), false);
         }
+
+        async void Directorybtn_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Directory", "Coming Soon!", "OK");
+            return;
+        }
     }
 }

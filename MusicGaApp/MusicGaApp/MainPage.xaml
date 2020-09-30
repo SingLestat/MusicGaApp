@@ -9,6 +9,7 @@
         <Label Text="Recommended live streams for you" HorizontalOptions="Center" TextColor="White" FontSize="Large" Padding="30,0,10,0" FontAttributes="Bold" VerticalTextAlignment="Center"/>
         <Label Text="Acurated list of events based on your tracked artists" TextColor="CadetBlue" Padding="30,0,10,0" HorizontalOptions="Center"/>
         <Button x:Name="mainRegisterbtn" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Button_Clicked"/>
+        <Button x:Name="Directorybtn" Text="Directory" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Directorybtn_Clicked"/>
     </StackLayout>
 
 </ContentPage>

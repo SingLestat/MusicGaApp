@@ -21,7 +21,7 @@ namespace MusicGaApp
         {
             if (State.SelectedIndex == -1 || Industry.SelectedIndex == - 1 || string.IsNullOrWhiteSpace(comapnyEntry.Text) || string.IsNullOrWhiteSpace(ownerEntry.Text) || string.IsNullOrWhiteSpace(addressEntry.Text) || string.IsNullOrWhiteSpace(zipEntry.Text) || string.IsNullOrWhiteSpace(cityEntry.Text) || string.IsNullOrWhiteSpace(urlEntry.Text))
             {
-                await DisplayAlert("Registration", "Please Enter Information.", "OK");
+                await DisplayAlert("Registration", "Please Enter Information.", "OK");             
                 return;
             }
             else
@@ -29,6 +29,11 @@ namespace MusicGaApp
                 await DisplayAlert("Registration", "Your Registration will be reviewed.", "OK"); 
                 return;
             }
+        }
+
+        async void Back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new MainPage(), false);
         }
     }
 }

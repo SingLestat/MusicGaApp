@@ -65,7 +65,7 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Entry x:Name="zipEntry" Placeholder="Zip Code" CharacterSpacing="5" Keyboard="Numeric" BackgroundColor="White"/>
+            <Entry x:Name="zipEntry" Placeholder="Zip Code" MaxLength="5" Keyboard="Numeric" BackgroundColor="White"/>
             <Entry x:Name="urlEntry" Placeholder="Company Website" BackgroundColor="White" Keyboard="Url"/>
             <Picker x:Name="Industry" Title="Industry" HorizontalOptions="FillAndExpand" BackgroundColor="White">
                 <Picker.ItemsSource>
@@ -83,7 +83,9 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+            <Editor x:Name="BioEdt" BackgroundColor="White" Placeholder="Bio" IsSpellCheckEnabled="True"/>
             <Button x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>
+            <Button x:Name="Back" Text="Back" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Back_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
