@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicGaApp.DataForm">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Black">
+            <Label Text="Registration to Add Company to Directory" TextColor="White" FontSize="Large" Padding="30,0,10,0" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+            <Entry x:Name="comapnyEntry" Placeholder="Company Name" BackgroundColor="White"/>
+            <Entry x:Name="ownerEntry" Placeholder="Owner's Name" BackgroundColor="White"/>
+            <Entry x:Name="addressEntry" Placeholder="Street Address" BackgroundColor="White"/>
+            <Entry x:Name="cityEntry" Placeholder="City" BackgroundColor="White"/>
+            <Picker x:Name="State" Title="State" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Alabama</x:String>
+                        <x:String>Alaska</x:String>
+                        <x:String>Arizona</x:String>
+                        <x:String>Arkansas</x:String>
+                        <x:String>California</x:String>
+                        <x:String>Colorado</x:String>
+                        <x:String>Connecticut</x:String>
+                        <x:String>Delaware</x:String>
+                        <x:String>Florida</x:String>
+                        <x:String>Georgia</x:String>
+                        <x:String>Hawaii</x:String>
+                        <x:String>Idaho</x:String>
+                        <x:String>Illinois</x:String>
+                        <x:String>Indiana</x:String>
+                        <x:String>Iowa</x:String>
+                        <x:String>Kansas</x:String>
+                        <x:String>Kentucky</x:String>
+                        <x:String>Louisiana</x:String>
+                        <x:String>Maine</x:String>
+                        <x:String>Maryland</x:String>
+                        <x:String>Massachusetts</x:String>
+                        <x:String>Michigan</x:String>
+                        <x:String>Minnesota</x:String>
+                        <x:String>Mississippi</x:String>
+                        <x:String>Missouri</x:String>
+                        <x:String>Montana</x:String>
+                        <x:String>Nebraska</x:String>
+                        <x:String>Nevada</x:String>
+                        <x:String>New Hampshire</x:String>
+                        <x:String>New Jersey</x:String>
+                        <x:String>New Mexico</x:String>
+                        <x:String>New York</x:String>
+                        <x:String>North Carolina</x:String>
+                        <x:String>North Dakota</x:String>
+                        <x:String>Ohio</x:String>
+                        <x:String>Oklahoma</x:String>
+                        <x:String>Oregon</x:String>
+                        <x:String>Pennsylvania</x:String>
+                        <x:String>Rhode Island</x:String>
+                        <x:String>South Carolina</x:String>
+                        <x:String>South Dakota</x:String>
+                        <x:String>Tennessee</x:String>
+                        <x:String>Texas</x:String>
+                        <x:String>Utah</x:String>
+                        <x:String>Vermont</x:String>
+                        <x:String>Virginia</x:String>
+                        <x:String>Washington</x:String>
+                        <x:String>West Virginia</x:String>
+                        <x:String>Wisconsin</x:String>
+                        <x:String>Wyoming</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry x:Name="zipEntry" Placeholder="Zip Code" CharacterSpacing="5" Keyboard="Numeric" BackgroundColor="White"/>
+            <Entry x:Name="urlEntry" Placeholder="Company Website" BackgroundColor="White" Keyboard="Url"/>
+            <Picker x:Name="Industry" Title="Industry" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Accountant</x:String>
+                        <x:String>Advertising Agencies</x:String>
+                        <x:String>Amphitheatres</x:String>
+                        <x:String>Annual Events</x:String>
+                        <x:String>Arrangers/Composers</x:String>
+                        <x:String>Art/Creative Studios</x:String>
+                        <x:String>Artist Management</x:String>
+                        <x:String>Attorneys</x:String>
+                        <x:String>Audio Engineers</x:String>
+                        <x:String>Other</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Button x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
