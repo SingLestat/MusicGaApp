@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicGaApp.LoginPage"
+             BackgroundImageSource="Background.jpp">
+    <ContentPage.Content>
+        <StackLayout x:Name="MasterLayout">
+            <StackLayout x:Name="LoginForm" VerticalOptions="StartAndExpand">
+                <StackLayout.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                        <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
+                    </OnIdiom>
+                </StackLayout.Padding>
+
+                <ActivityIndicator x:Name="Spinner" Color="BlueViolet" IsRunning="True"/>
+                <Frame CornerRadius="10">
+                    <StackLayout x:Name="EmailGroup">
+                        <Entry x:Name="entry_Email" Placeholder="Email"/>
+                        <Entry x:Name="entry_Password" Placeholder="Password"/>
+                    </StackLayout>
+                </Frame>
+                <Button x:Name="btn_Login" Text="Login" TextColor="White"  
+                        FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                        BackgroundColor="BlueViolet" CornerRadius="10" Clicked="SignInProcedure"/>
+                <Button FontAttributes="Bold" FontSize="Large" x:Name="Registerbtn" Text="Skip" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

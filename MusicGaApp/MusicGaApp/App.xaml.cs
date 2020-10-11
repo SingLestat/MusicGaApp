@@ -10,11 +10,11 @@ namespace MusicGaApp
         {
             InitializeComponent();
 
-            MainPage = new Login();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
-        {
+        { 
         }
 
         protected override void OnSleep()
