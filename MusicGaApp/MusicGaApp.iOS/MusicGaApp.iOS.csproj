@@ -139,4 +139,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\BackGround.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Publication1.png" />
+  </ItemGroup>
 </Project>
