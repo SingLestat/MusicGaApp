@@ -23,20 +23,33 @@ namespace MusicGaApp
         {
             Spinner.IsVisible = false;
 
+            
+
             entry_Email.Completed += (s, e) => entry_Password.Focus();
             entry_Password.Completed += (s, e) => SignInProcedure(s, e);
         }
-        void SignInProcedure(object sender, EventArgs e)
+        async void SignInProcedure(object sender, EventArgs e)
         {
             User user = new User(entry_Email.Text, entry_Password.Text);
             if(user.checkInfo())
             {
-                DisplayAlert("Login", "Login Success", "Ok");
+                await DisplayAlert("Login", "Login Success", "Ok");
+                await Navigation.PushModalAsync(new MainPage(), false);
             }
             else
             {
-                DisplayAlert("Login", "Login Not Correct", "Ok");
+                await DisplayAlert("Login", "Login Not Correct", "Ok");
             }
+        }
+
+        async void Registerbtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new RegPage(), false);
+        }
+
+        async void ForgotPassbtn_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Password Recovery", "Coming Soon!", "OK");
         }
     }
 }

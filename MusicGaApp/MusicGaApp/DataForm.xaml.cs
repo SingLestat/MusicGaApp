@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicGaApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,9 @@ namespace MusicGaApp
         public DataForm()
         {
             InitializeComponent();
-        }
 
+            State.ItemsSource = Constants.States;
+        }
         async void Register_Clicked(object sender, EventArgs e)
         {
             if (State.SelectedIndex == -1 || Industry.SelectedIndex == - 1 || string.IsNullOrWhiteSpace(comapnyEntry.Text) || string.IsNullOrWhiteSpace(ownerEntry.Text) || string.IsNullOrWhiteSpace(addressEntry.Text) || string.IsNullOrWhiteSpace(zipEntry.Text) || string.IsNullOrWhiteSpace(cityEntry.Text) || string.IsNullOrWhiteSpace(urlEntry.Text))

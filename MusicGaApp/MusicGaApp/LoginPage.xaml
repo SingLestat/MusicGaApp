@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusicGaApp.LoginPage"
-             BackgroundImageSource="BackGround.jpp">
+             BackgroundImageSource="Background2.jpp">
     <ContentPage.Content>
         <StackLayout x:Name="MasterLayout">
             <StackLayout x:Name="LoginForm" VerticalOptions="StartAndExpand">
@@ -25,7 +25,8 @@
                 <Button x:Name="btn_Login" Text="Login" TextColor="White"  
                         FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                         BackgroundColor="BlueViolet" CornerRadius="10" Clicked="SignInProcedure"/>
-                <Button FontAttributes="Bold" FontSize="Large" x:Name="Registerbtn" Text="Skip" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10"/>
+                <Button FontAttributes="Bold" FontSize="Large" x:Name="Registerbtn" Text="Registration" Clicked="Registerbtn_Clicked"  TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10"/>
+                <Button FontAttributes="Bold" FontSize="Large" x:Name="ForgotPassbtn" Text="Forgot Password?" Clicked="ForgotPassbtn_Clicked"  TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10"/>
             </StackLayout>
             
         </StackLayout>

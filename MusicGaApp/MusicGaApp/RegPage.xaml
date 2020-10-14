@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicGaApp.RegPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="MasterLayout" BackgroundColor="Black">
+            <Label Text="Registration" TextColor="White" FontSize="Title" HorizontalTextAlignment="Center"></Label>
+            <StackLayout x:Name="RegForm" VerticalOptions="StartAndExpand">
+                <StackLayout.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                        <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
+                    </OnIdiom>
+                </StackLayout.Padding>
+                <Frame CornerRadius="10">
+                    <StackLayout x:Name="EmailGroup">
+                        <Entry x:Name="entry_First" Placeholder="First Name"/>
+                        <Entry x:Name="entry_Last" Placeholder="Last Name"/>
+                        <Entry x:Name="entry_Email" Placeholder="Email"/>
+                        <Entry x:Name="entry_Password" Placeholder="Password"/>
+                        <Entry x:Name="entry_ReEnter" Placeholder="Re-Enter Password"/>
+                    </StackLayout>
+                </Frame>
+                <Button x:Name="btn_Reg" Text="Register" TextColor="White"  
+                        FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                        BackgroundColor="BlueViolet" CornerRadius="10" Clicked="RegProcedure"/>
+                <Button FontAttributes="Bold" FontSize="Large" x:Name="Registerbtn" Text="Skip" Clicked="SkipProcedure" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
