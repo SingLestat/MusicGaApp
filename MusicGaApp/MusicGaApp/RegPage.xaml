@@ -17,8 +17,8 @@
                         <Entry x:Name="entry_First" Placeholder="First Name"/>
                         <Entry x:Name="entry_Last" Placeholder="Last Name"/>
                         <Entry x:Name="entry_Email" Placeholder="Email"/>
-                        <Entry x:Name="entry_Password" Placeholder="Password"/>
-                        <Entry x:Name="entry_ReEnter" Placeholder="Re-Enter Password"/>
+                        <Entry x:Name="entry_Password" Placeholder="Password" IsPassword="True" TextChanged="entry_Password_TextChanged"/>
+                        <Entry x:Name="entry_ReEnter" Placeholder="Re-Enter Password" IsPassword="True"/>
                     </StackLayout>
                 </Frame>
                 <Button x:Name="btn_Reg" Text="Register" TextColor="White"  

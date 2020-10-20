@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MusicGaApp.ViewModels
@@ -23,6 +24,16 @@ namespace MusicGaApp.ViewModels
                 return true;
             else
                 return false;
+        }
+
+        public static bool checkSpecialChar(string word)
+        {
+            foreach (var item in Constants.specialChar)
+            {
+                if (word.Contains(item)) return true;
+            }
+
+            return false;
         }
     }
 }
