@@ -29,6 +29,18 @@ namespace MusicGaApp
             }
             else
             {
+                string company = comapnyEntry.Text;
+                string owner = ownerEntry.Text;
+                string street = addressEntry.Text;
+                string city = cityEntry.Text;
+                string state = State.SelectedItem.ToString();
+                string zip = zipEntry.Text;
+                string website = urlEntry.Text;
+                string industry = Industry.SelectedItem.ToString();
+                string Bio = BioEdt.Text;
+
+                DataInput.InputCompany(company,owner,street,city,state,zip,website,industry,Bio);
+
                 await DisplayAlert("Registration", "Your Registration will be reviewed.", "OK"); 
                 return;
             }

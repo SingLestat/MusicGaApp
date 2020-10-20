@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -20,7 +21,15 @@ namespace MusicGaApp.ViewModels
 
         public bool checkInfo()
         {
-            if (!this.Email.Equals("") && !this.Password.Equals(""))
+            SqlConnection scn = new SqlConnection();
+            scn.ConnectionString = Constants.ConnectionString;
+            SqlCommand scmd = new SqlCommand("select count (*) as cnt from User where Email= " + Email + " and password= "+ Password + "", scn);
+            scmd.Parameters.Clear();
+            scmd.Parameters.AddWithValue("@Email", Email);
+            scmd.Parameters.AddWithValue("@Password", Password);
+            scn.Open();
+
+            if (scmd.ExecuteScalar().ToString() == "1")
                 return true;
             else
                 return false;

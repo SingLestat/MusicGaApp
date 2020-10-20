@@ -22,7 +22,7 @@ namespace MusicGaApp
 
         void Init()
         {
-
+            DataGet.GetIndustryList();
         }
 
         async void RegProcedure(object sender, EventArgs e)
