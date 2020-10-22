@@ -25,7 +25,9 @@ namespace MusicGaApp
 
         public static void InputUser(string fName, string lName, string email, string password)
         {
-            string insert = "INSERT user (FirstName, LastName, Email, Password) VALUES ('" + fName + "','" + lName + "','" + email + "','" + password + "')";
+            //string insert = "INSERT user (FirstName, LastName, Email, Password) VALUES ('" + fName + "','" + lName + "','" + email + "','" + password + "')";
+
+            string insert = "INSERT user (Username, Bio, Email, Password, Web links) VALUES ('" + fName + "','" + lName + "','" + email + "','" + password + "' ,'" + password + "','" + password + "')";
 
             InsertConnection(insert);
         }
