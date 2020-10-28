@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicGaApp.ItemDetail">
+    <StackLayout BackgroundColor="Black">
+        <Frame CornerRadius="10">
+            <StackLayout>
+                <Label x:Name="Title" Text="Artist:" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="artistStageName" Text="Stage Name: "/>
+                <Label x:Name="artistFirstName" Text="First Name: "/>
+                <Label x:Name="artistLastName" Text="Last Name: "/>
+                <Label x:Name="artistStreet" Text="Street Address: "/>
+                <Label x:Name="artistCity" Text="City: "/>
+                <Label x:Name="artistState" Text="State: "/>
+                <Label x:Name="artistZip" Text="Zip Code: "/>
+                <Label x:Name="artistWebsite" Text="Website: "/>
+                <Label x:Name="artistGenre" Text="Genre: "/>
+                <Label x:Name="artistSubGenre" Text="SubGenre:"/>
+                <Label x:Name="artistBio"  Text="Bio: " LineBreakMode="WordWrap"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

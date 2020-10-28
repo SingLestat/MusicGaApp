@@ -1,4 +1,5 @@
 ﻿using MusicGaApp.ViewModels;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,17 +11,12 @@ namespace MusicGaApp
     {
         private static void InsertConnection(string Command)
         {
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-                new System.Data.SqlClient.SqlConnection(Constants.ConnectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = Command;
-            cmd.Connection = sqlConnection1;
-
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using (MySqlConnection conn = new MySqlConnection(Constants.ConnectionString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(Command);
+                command.ExecuteNonQuery();
+            }
         }
 
         public static void InputUser(string fName, string lName, string email, string password)
@@ -32,13 +28,40 @@ namespace MusicGaApp
             InsertConnection(insert);
         }
 
-        public static void InputCompany(string company, string owner, string street, string city, string state, string zip, string website, string industry, string bio)
+        public static void InputCompany(string company, string ownerFname,string ownerLname, string street, string city, string state, string zip, string website, string industry, string bio)
         {
-            string insertbusiness = "INSERT business (Business_Name, Address, Area/County/Zipcode, Business_Category) VALUES ('" + company + "','" + street + " " + city + " " + state + "','" + industry + "')";
-            string insertOwner = "INSERT business_owner (Owner_Name) VALUES ('" + owner + "')";
+            //string insertbusiness = "INSERT business (Business_Name, Address, Area/County/Zipcode, Business_Category) VALUES ('" + company + "','" + street + " " + city + " " + state + "','" + industry + "')";
+            //string insertOwner = "INSERT business_owner (Owner_Name) VALUES ('" + owner + "')";
 
-            InsertConnection(insertbusiness);
-            InsertConnection(insertOwner);
+            //InsertConnection(insertbusiness);
+            //InsertConnection(insertOwner);
+        }
+
+        public static void InputArtist(string Stagename, string fname, string lname, string street, string city, string state, string zip, string website, string genre, string bio)
+        {
+            //string insertbusiness = "INSERT business (Business_Name, Address, Area/County/Zipcode, Business_Category) VALUES ('" + company + "','" + street + " " + city + " " + state + "','" + industry + "')";
+            //string insertOwner = "INSERT business_owner (Owner_Name) VALUES ('" + owner + "')";
+
+            //nsertConnection(insertbusiness);
+           // InsertConnection(insertOwner);
+        }
+
+        public static void InputEvent(string eventName, string fname, string lname, string street, string city, string state, string zip, string website, string Data, string time, string bio)
+        {
+            //string insertbusiness = "INSERT business (Business_Name, Address, Area/County/Zipcode, Business_Category) VALUES ('" + company + "','" + street + " " + city + " " + state + "','" + industry + "')";
+            //string insertOwner = "INSERT business_owner (Owner_Name) VALUES ('" + owner + "')";
+
+            //nsertConnection(insertbusiness);
+            // InsertConnection(insertOwner);
+        }
+
+        public static void InputVenue(string eventName, string fname, string lname, string street, string city, string state, string zip, string website, string bio)
+        {
+            //string insertbusiness = "INSERT business (Business_Name, Address, Area/County/Zipcode, Business_Category) VALUES ('" + company + "','" + street + " " + city + " " + state + "','" + industry + "')";
+            //string insertOwner = "INSERT business_owner (Owner_Name) VALUES ('" + owner + "')";
+
+            //nsertConnection(insertbusiness);
+            // InsertConnection(insertOwner);
         }
     }
 }

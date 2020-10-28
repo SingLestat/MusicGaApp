@@ -3,25 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusicGaApp.Artist">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout BackgroundColor="Black">
-                <Label Text="Registration to Add Company to Artist" TextColor="White" FontSize="Large" Padding="30,0,10,0" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
-                <Frame CornerRadius="10">
-                    <StackLayout>
-                        <Entry x:Name="stageNameEntry" Placeholder="Stage Name" BackgroundColor="White"/>
-                        <Entry x:Name="entry_First" Placeholder="First Name"/>
-                        <Entry x:Name="entry_Last" Placeholder="Last Name"/>
-                        <Entry x:Name="cityEntry" Placeholder="City" BackgroundColor="White"/>
-                        <Picker x:Name="State" Title="State" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
-                        <Entry x:Name="zipEntry" Placeholder="Zip Code" MaxLength="5" Keyboard="Numeric" BackgroundColor="White"/>
-                        <Entry x:Name="artistURLEntry" Placeholder="Artist Website" BackgroundColor="White" Keyboard="Url"/>
-                        <Picker x:Name="genre" Title="Genre" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
-                        <Entry x:Name="BioEdt" BackgroundColor="White" Placeholder="Bio" IsSpellCheckEnabled="True"/>
-                    </StackLayout>
-                </Frame>
-                <Button FontAttributes="Bold" FontSize="Large" x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>
-                <Button FontAttributes="Bold" FontSize="Large" x:Name="Back" Text="Back" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Back_Clicked"/>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout BackgroundColor="Black">
+                    <Label Text="Registration to Add Company to Artist" TextColor="White" FontSize="Large" Padding="30,0,10,0" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                    <Frame CornerRadius="10">
+                        <StackLayout>
+                            <Entry x:Name="stageNameEntry" Placeholder="Stage Name" BackgroundColor="White"/>
+                            <Entry x:Name="entry_First" Placeholder="First Name"/>
+                            <Entry x:Name="entry_Last" Placeholder="Last Name"/>
+                            <Entry x:Name="streetEntry" Placeholder="Street" BackgroundColor="White"/>
+                            <Entry x:Name="cityEntry" Placeholder="City" BackgroundColor="White"/>
+                            <Picker x:Name="State" Title="State" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
+                            <Entry x:Name="zipEntry" Placeholder="Zip Code" MaxLength="5" Keyboard="Numeric" BackgroundColor="White"/>
+                            <Entry x:Name="artistURLEntry" Placeholder="Artist Website" BackgroundColor="White" Keyboard="Url"/>
+                            <Picker x:Name="genre" Title="Genre" HorizontalOptions="FillAndExpand" BackgroundColor="White" SelectedIndexChanged="genre_SelectedIndexChanged"/>
+                            <Picker x:Name="subGenre" Title="Subgenre" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
+                            <Entry x:Name="BioEdt" BackgroundColor="White" Placeholder="Bio" IsSpellCheckEnabled="True"/>
+                        </StackLayout>
+                    </Frame>
+                    <Button FontAttributes="Bold" FontSize="Large" x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>
+                    <Button FontAttributes="Bold" FontSize="Large" x:Name="Back" Text="Back" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Back_Clicked"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

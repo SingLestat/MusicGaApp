@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="1.0.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
@@ -40,7 +41,13 @@
     <EmbeddedResource Update="DataForm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Directory.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Events.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ItemDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="LoginPage.xaml">

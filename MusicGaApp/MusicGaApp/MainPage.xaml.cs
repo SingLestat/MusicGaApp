@@ -32,8 +32,7 @@ namespace MusicGaApp
 
         async void Directorybtn_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Directory", "Coming Soon!", "OK");
-            return;
+            await Navigation.PushModalAsync(new Directory(), false);
         }
 
     }

@@ -1,4 +1,6 @@
-﻿using MusicGaApp.ViewModels;
+﻿using MusicGaApp.Model;
+using MusicGaApp.ViewModels;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +39,25 @@ namespace MusicGaApp
                 {
                     string password = entry_Password.Text;
 
-                    if (password.Length < 8 && password.Any(char.IsUpper) && User.checkSpecialChar(password) && password.Any(char.IsDigit))
+                    if (password.Length < 8 && password.Any(char.IsUpper) && password.Any(char.IsDigit))
                     {
 
                         if (DataGet.uniqueUser(email))
                         {
-                            DataInput.InputUser(fName, lName, email, password);
+                            UserInfo userInfo = new UserInfo()
+                            {
+                                firstName = fName,
+                                lastName = lName,
+                                email = email,
+                                Password = password
+                            };
+
+                            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+                            conn.CreateTable<UserInfo>();
+                            conn.Insert(userInfo);
+                            conn.Close();
+
+                            //DataInput.InputUser(fName, lName, email, password);
 
                             await DisplayAlert("Registration", "Registration Success", "Ok");
                             await Navigation.PushModalAsync(new MainPage(), false);
