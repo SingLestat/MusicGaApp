@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicGaApp.Directory">
+    <ScrollView BackgroundColor="Black">
+        <StackLayout>
+            <Frame BackgroundColor="Black">
+                <StackLayout>
+                <Label Text="Entry Type:" TextColor="White" FontSize="Subtitle" HorizontalTextAlignment="Center"/>
+                    <Picker x:Name="entryType" HorizontalOptions="FillAndExpand" TextColor="White">
+                        <Picker.Items>
+                            <x:String>Artist</x:String>
+                            <x:String>Event</x:String>
+                            <x:String>Company</x:String>
+                            <x:String>Venue</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Button x:Name="SelectBtn" Text="Select" FontAttributes="Bold" FontSize="Large" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="SelectBtn_Clicked"/>
+                </StackLayout>
+            </Frame>
+            <ListView x:Name="listView" ItemSelected="listView_ItemSelected">
+
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

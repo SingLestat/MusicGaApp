@@ -1,6 +1,8 @@
 ﻿using MusicGaApp.ViewModels;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,11 @@ namespace MusicGaApp
             InitializeComponent();
 
             State.ItemsSource = Constants.States;
-            Industry.ItemsSource = DataGet.GetIndustryList();
+            Industry.ItemsSource = Constants.Industry;
         }
         async void Register_Clicked(object sender, EventArgs e)
         {
-            if (State.SelectedIndex == -1 || Industry.SelectedIndex == - 1 || string.IsNullOrWhiteSpace(comapnyEntry.Text) || string.IsNullOrWhiteSpace(ownerEntry.Text) || string.IsNullOrWhiteSpace(addressEntry.Text) || string.IsNullOrWhiteSpace(zipEntry.Text) || string.IsNullOrWhiteSpace(cityEntry.Text) || string.IsNullOrWhiteSpace(urlEntry.Text))
+            if (State.SelectedIndex == -1 || Industry.SelectedIndex == - 1 || string.IsNullOrWhiteSpace(comapnyEntry.Text) || string.IsNullOrWhiteSpace(ownerFnameEntry.Text) || string.IsNullOrWhiteSpace(ownerLnameEntry.Text) || string.IsNullOrWhiteSpace(addressEntry.Text) || string.IsNullOrWhiteSpace(zipEntry.Text) || string.IsNullOrWhiteSpace(cityEntry.Text) || string.IsNullOrWhiteSpace(urlEntry.Text))
             {
                 await DisplayAlert("Registration", "Please Enter Information.", "OK");             
                 return;
@@ -30,7 +32,8 @@ namespace MusicGaApp
             else
             {
                 string company = comapnyEntry.Text;
-                string owner = ownerEntry.Text;
+                string ownerFname = ownerFnameEntry.Text;
+                string ownerLname = ownerLnameEntry.Text;
                 string street = addressEntry.Text;
                 string city = cityEntry.Text;
                 string state = State.SelectedItem.ToString();
@@ -39,7 +42,6 @@ namespace MusicGaApp
                 string industry = Industry.SelectedItem.ToString();
                 string Bio = BioEdt.Text;
 
-                DataInput.InputCompany(company,owner,street,city,state,zip,website,industry,Bio);
 
                 await DisplayAlert("Registration", "Your Registration will be reviewed.", "OK"); 
                 return;

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicGaApp.ItemDetail">
+
+    <ScrollView>
+        <StackLayout BackgroundColor="Black">
+            <Frame BackgroundColor="BlueViolet" CornerRadius="10">
+                <Label Text="Info" TextColor="White" FontSize="Title"  HorizontalTextAlignment="Center"/>
+            </Frame>
+            <ListView x:Name="ItemEntryView"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

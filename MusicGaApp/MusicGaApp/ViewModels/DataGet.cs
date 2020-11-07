@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace MusicGaApp.ViewModels
 {
@@ -9,86 +8,108 @@ namespace MusicGaApp.ViewModels
     {
         private static List<string> Industry = new List<string> { "Other" };
 
-        private void GetConnection(string Command)
+        public static bool uniqueUser(string email)
         {
-            string connetionString = Command;
-            SqlConnection cnn;
-            connetionString = Constants.ConnectionString;
-            cnn = new SqlConnection(connetionString);
-            cnn.Open();
-            cnn.Close();
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM [User] WHERE EMAIL='" + email + "'", Constants.conn);
+            DataTable dt = new DataTable(); //this is creating a virtual table  
+            sda.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
-        public static bool LoadData()
+        public static bool IsValidEmail(string email)
         {
             try
             {
-                using (SqlConnection cn = new SqlConnection(Constants.ConnectionString))
-                {
-                    string commandText = @"
-                    SELECT Business_Category As Industry FROM [mydb].[business]; ";
-                 
-                    using (SqlCommand cmd = new SqlCommand(commandText, cn))
-                    {
-
-                        cn.Open();
-
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        // get results into first list from first select
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                Industry.Add(reader.GetString(0));
-                            }
-
-                            // move on to second select
-                            reader.NextResult();
-                        }
-                    }
-                }
-                return true;
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }
         }
 
-    public static List<string> GetIndustryList()
+        public static List<string> GetDatabaseList(string colName, string table)
         {
-            LoadData();
+            List<string> list = new List<string>();
 
-            return Industry;
+            using (Constants.conn)
+            {
+                Constants.conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT " + colName + " FROM [dbo].[" + table + "]", Constants.conn))
+                {
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            list.Add(dr[0].ToString());
+                        }
+                    }
+                }
+
+                Constants.conn.Close();
+            }
+            return list;
         }
 
-        public static bool uniqueUser(string email)
+        public static List<string> GetDatabaseList(string selectedItem, string Table, string ColName)
         {
-            SqlConnection cnn;
-            string connetionString = Constants.ConnectionString;
-            cnn = new SqlConnection(connetionString);
-            cnn.Open();
-            using (var sqlCommand = new SqlCommand("SELECT COUNT(*) FROM User WHERE ([email] = '" + email + "'", cnn))
+            List<string> list = new List<string>();
+            List<string> listCol = new List<string>();
+            List<string> listInfo = new List<string>();
+
+            using (SqlConnection conn = new SqlConnection("Data Source = gamusicserver.database.windows.net; Initial Catalog = GaMusicDB; User ID = GGteam4; Password = P@ssword!; Connect Timeout = 60; Encrypt = True; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;"))
             {
+                conn.Open();
 
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[" + Table + "] WHERE " + ColName + " = '" + selectedItem + "'", conn))
                 {
-                    //Record Already Exists
-                    reader.Close();
-                    reader.Dispose();
-                    return false;
-
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            for (int c = 0; c < dr.FieldCount; c++)
+                            {
+                                listInfo.Add(dr[c].ToString());
+                            }
+                        }
+                    }
                 }
-                else
+
+                conn.Close();
+
+                using (SqlConnection conn1 = new SqlConnection("Data Source = gamusicserver.database.windows.net; Initial Catalog = GaMusicDB; User ID = GGteam4; Password = P@ssword!; Connect Timeout = 60; Encrypt = True; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;"))
+
                 {
-                    //Record does not Exists
-                    reader.Close();
-                    reader.Dispose();
-                    return true;
+                    conn1.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("select column_name from information_schema.columns where table_name = '"+Table+"'", conn1))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                listCol.Add(dr[0].ToString());
+                            }
+                        }
+                    }
+
+                    conn1.Close();
+                }
+
+                for (int x = 0; x < listCol.Count; x++)
+                {
+                    list.Add(listCol[x].ToString() + ": " + listInfo[x].ToString());
                 }
             }
+            return list;
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MusicGaApp
         }
 
         protected override void OnStart()
-        { 
+        {
         }
 
         protected override void OnSleep()

@@ -21,19 +21,16 @@ namespace MusicGaApp
 
         void Init()
         {
-            Spinner.IsVisible = false;
-
-            
-
             entry_Email.Completed += (s, e) => entry_Password.Focus();
             entry_Password.Completed += (s, e) => SignInProcedure(s, e);
         }
         async void SignInProcedure(object sender, EventArgs e)
         {
+
             User user = new User(entry_Email.Text, entry_Password.Text);
             if(user.checkInfo())
             {
-                await DisplayAlert("Login", "Login Success", "Ok");
+                await DisplayAlert("Login", "Login Success "+ User.Id +"", "Ok");
                 await Navigation.PushModalAsync(new MainPage(), false);
             }
             else

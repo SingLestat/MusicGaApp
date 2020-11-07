@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MusicGaApp.ViewModels
 {
     class User
     {
-        public int Id { get; set; }
+        public static int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 
@@ -21,16 +22,15 @@ namespace MusicGaApp.ViewModels
 
         public bool checkInfo()
         {
-            SqlConnection scn = new SqlConnection();
-            scn.ConnectionString = Constants.ConnectionString;
-            SqlCommand scmd = new SqlCommand("select count (*) as cnt from User where Email= " + Email + " and password= "+ Password + "", scn);
-            scmd.Parameters.Clear();
-            scmd.Parameters.AddWithValue("@Email", Email);
-            scmd.Parameters.AddWithValue("@Password", Password);
-            scn.Open();
-
-            if (scmd.ExecuteScalar().ToString() == "1")
+   
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM [User] WHERE EMAIL='" + Email + "' AND PASSWORD ='" + Password + "'", Constants.conn);
+            DataTable dt = new DataTable(); //this is creating a virtual table  
+            sda.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
+            {
+                getUserId();
                 return true;
+            }
             else
                 return false;
         }
@@ -43,6 +43,27 @@ namespace MusicGaApp.ViewModels
             }
 
             return false;
+        }
+
+        public static void getUserId()
+        {
+            using (Constants.conn)
+            {
+                Constants.conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT USER_ID FROM [dbo].[User]", Constants.conn))
+                {
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            Id = (int)dr[0];
+                        }
+                    }
+                }
+
+                Constants.conn.Close();
+            }
         }
     }
 }

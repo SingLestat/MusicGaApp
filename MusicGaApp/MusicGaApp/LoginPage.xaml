@@ -15,7 +15,6 @@
                 <StackLayout>
                     <Image Source="Publication1.png"></Image>
                 </StackLayout>
-                <ActivityIndicator x:Name="Spinner" Color="BlueViolet" IsRunning="True"/>
                 <Frame CornerRadius="10">
                     <StackLayout x:Name="EmailGroup">
                         <Entry x:Name="entry_Email" Placeholder="Email"/>
