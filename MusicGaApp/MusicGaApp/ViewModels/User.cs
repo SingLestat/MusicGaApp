@@ -28,7 +28,7 @@ namespace MusicGaApp.ViewModels
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
-                getUserId();
+                //getUserId(Email);
                 return true;
             }
             else
@@ -45,13 +45,13 @@ namespace MusicGaApp.ViewModels
             return false;
         }
 
-        public static void getUserId()
+        public static void getUserId(string email)
         {
-            using (Constants.conn)
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
             {
-                Constants.conn.Open();
+                conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT USER_ID FROM [dbo].[User]", Constants.conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT USER_ID FROM [dbo].[User] Where EMAIL = " + email + "", conn))
                 {
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -62,7 +62,7 @@ namespace MusicGaApp.ViewModels
                     }
                 }
 
-                Constants.conn.Close();
+                conn.Close();
             }
         }
     }

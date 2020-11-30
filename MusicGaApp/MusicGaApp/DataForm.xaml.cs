@@ -20,7 +20,7 @@ namespace MusicGaApp
             InitializeComponent();
 
             State.ItemsSource = Constants.States;
-            Industry.ItemsSource = Constants.Industry;
+            Industry.ItemsSource = DataGet.GetIndustry();
         }
         async void Register_Clicked(object sender, EventArgs e)
         {

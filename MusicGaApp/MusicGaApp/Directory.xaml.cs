@@ -42,6 +42,7 @@ namespace MusicGaApp
         private void SelectBtn_Clicked(object sender, EventArgs e)
         {
 
+
             if(entryType.SelectedItem.ToString().Equals("Artist"))
             {
                 TableName = "Artist";

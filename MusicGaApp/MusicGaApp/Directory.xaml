@@ -10,8 +10,6 @@
                     <Picker x:Name="entryType" HorizontalOptions="FillAndExpand" TextColor="White">
                         <Picker.Items>
                             <x:String>Artist</x:String>
-                            <x:String>Event</x:String>
-                            <x:String>Company</x:String>
                             <x:String>Venue</x:String>
                         </Picker.Items>
                     </Picker>

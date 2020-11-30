@@ -12,12 +12,14 @@ namespace MusicGaApp
 
         async void CompanyButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new DataForm(), false);
+            await DisplayAlert("Coming Soon", "Coming Soon!", "OK");
+            //await Navigation.PushModalAsync(new DataForm(), false);
         }
 
         async void EventButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new Events(), false);
+            await DisplayAlert("Coming Soon", "Coming Soon!", "OK");
+            //await Navigation.PushModalAsync(new Events(), false);
         }
 
         async void VenueButton_Clicked(object sender, EventArgs e)

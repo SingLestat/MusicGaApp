@@ -13,19 +13,23 @@ namespace MusicGaApp
 
         private static void InsertConnection(SqlCommand Command)
         {
-            using (Constants.conn)
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
             {
-                Constants.conn.Open();
+                conn.Open();
                 Command.ExecuteNonQuery();
-                Constants.conn.Close();
+                conn.Close();
             }
         }
 
         public static void InputUser(string fName, string lName, string email, string password, string gender, string phone, string address, string city, string state,string zip, DateTime date, string photoUrl)
         {
-            string insert = "INSERT INTO [dbo].[User] VALUES (@id, @email, @password, @firstName, @lastName, @gender, @DOB, @phone, @photoURL, @street, @city, @state, @Zipcode);";
+            string insert = "INSERT INTO [dbo].[User] VALUES (@id, @firstName, @lastName, @email, @password, @gender, @DOB, @phone, @photoURL, @street, @city, @state, @Zipcode);";
 
-            SqlCommand sqlCommand = new SqlCommand(insert, Constants.conn);
+            SqlConnection conn = new SqlConnection(Constants.conn);
+
+            conn.Open();
+
+            SqlCommand sqlCommand = new SqlCommand(insert, conn);
 
             sqlCommand.Parameters.AddWithValue("@id", randomNum.Next());
             sqlCommand.Parameters.AddWithValue("@email", email);
@@ -43,6 +47,8 @@ namespace MusicGaApp
 
 
             InsertConnection(sqlCommand);
+
+            conn.Close();
         }
 
         public static void InputCompany(string company, string ownerFname,string ownerLname, string street, string city, string state, string zip, string website, string industry, string bio)
@@ -54,13 +60,29 @@ namespace MusicGaApp
             //InsertConnection(insertOwner);
         }
 
-        public static void InputArtist(string Stagename, string fname, string lname, string street, string city, string state, string zip, string website, string genre, string bio)
+        public static void InputArtist(string Stagename, string music_genre, string music_sub_genre, string artist_email, string handle_instagram, string handle_facebook, string handle_twitter, string artist_website)
         {
-            //string insertbusiness = "INSERT business (Business_Name, Address, Area/County/Zipcode, Business_Category) VALUES ('" + company + "','" + street + " " + city + " " + state + "','" + industry + "')";
-            //string insertOwner = "INSERT business_owner (Owner_Name) VALUES ('" + owner + "')";
+            string insert = "INSERT INTO [dbo].[Artist] VALUES (@id, @artist_name, @music_genre, @music_sub_genre, @artist_email, @handle_instagram, @handle_facebook, @handle_twitter, @artist_website);";
 
-            //nsertConnection(insertbusiness);
-           // InsertConnection(insertOwner);
+            SqlConnection conn = new SqlConnection(Constants.conn);
+
+            conn.Open();
+
+            SqlCommand sqlCommand = new SqlCommand(insert, conn);
+
+            sqlCommand.Parameters.AddWithValue("@id", randomNum.Next());
+            sqlCommand.Parameters.AddWithValue("@artist_name", Stagename);
+            sqlCommand.Parameters.AddWithValue("@music_genre", music_genre);
+            sqlCommand.Parameters.AddWithValue("@music_sub_genre", music_sub_genre);
+            sqlCommand.Parameters.AddWithValue("@artist_email", artist_email);
+            sqlCommand.Parameters.AddWithValue("@handle_instagram", handle_instagram);
+            sqlCommand.Parameters.AddWithValue("@handle_facebook", handle_facebook);
+            sqlCommand.Parameters.AddWithValue("@handle_twitter", handle_twitter);
+            sqlCommand.Parameters.AddWithValue("@artist_website", artist_website);
+
+            InsertConnection(sqlCommand);
+
+            conn.Close();
         }
 
         public static void InputEvent(string eventName, string fname, string lname, string street, string city, string state, string zip, string website, string Data, string time, string bio)
@@ -76,14 +98,18 @@ namespace MusicGaApp
         {
             string insert = "INSERT INTO [dbo].[Venue] VALUES (@id, @venueName, @firstName, @lastName, @email, @phone, @weblink, @street, @city, @state, @Zipcode, @userId);";
 
-            SqlCommand sqlCommand = new SqlCommand(insert, Constants.conn);
+            SqlConnection conn = new SqlConnection(Constants.conn);
+
+            conn.Open();
+
+            SqlCommand sqlCommand = new SqlCommand(insert, conn);
 
             sqlCommand.Parameters.AddWithValue("@id", randomNum.Next());
-            sqlCommand.Parameters.AddWithValue("@venueName", email);
+            sqlCommand.Parameters.AddWithValue("@venueName", venueName);
             sqlCommand.Parameters.AddWithValue("@firstName", fname);
             sqlCommand.Parameters.AddWithValue("@lastName", lname);
-            sqlCommand.Parameters.AddWithValue("@email", email);
             sqlCommand.Parameters.AddWithValue("@phone", phone);
+            sqlCommand.Parameters.AddWithValue("@email", email);
             sqlCommand.Parameters.AddWithValue("@weblink", webURL);
             sqlCommand.Parameters.AddWithValue("@street", street);
             sqlCommand.Parameters.AddWithValue("@city", city);
@@ -92,6 +118,8 @@ namespace MusicGaApp
             sqlCommand.Parameters.AddWithValue("@userId", User.Id);
 
             InsertConnection(sqlCommand);
+
+            conn.Close();
         }
     }
 }

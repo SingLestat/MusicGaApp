@@ -10,16 +10,13 @@
                     <Frame CornerRadius="10">
                         <StackLayout>
                             <Entry x:Name="stageNameEntry" Placeholder="Stage Name" BackgroundColor="White"/>
-                            <Entry x:Name="entry_First" Placeholder="First Name"/>
-                            <Entry x:Name="entry_Last" Placeholder="Last Name"/>
-                            <Entry x:Name="streetEntry" Placeholder="Street" BackgroundColor="White"/>
-                            <Entry x:Name="cityEntry" Placeholder="City" BackgroundColor="White"/>
-                            <Picker x:Name="State" Title="State" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
-                            <Entry x:Name="zipEntry" Placeholder="Zip Code" MaxLength="5" Keyboard="Numeric" BackgroundColor="White"/>
-                            <Entry x:Name="artistURLEntry" Placeholder="Artist Website" BackgroundColor="White" Keyboard="Url"/>
                             <Picker x:Name="genre" Title="Genre" HorizontalOptions="FillAndExpand" BackgroundColor="White" SelectedIndexChanged="genre_SelectedIndexChanged"/>
                             <Picker x:Name="subGenre" Title="Subgenre" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
-                            <Entry x:Name="BioEdt" BackgroundColor="White" Placeholder="Bio" IsSpellCheckEnabled="True"/>
+                            <Entry x:Name="emailEntry" Placeholder="Email" BackgroundColor="White" Keyboard="Url"/>
+                            <Entry x:Name="artistURLEntry" Placeholder="Artist Website" BackgroundColor="White" Keyboard="Url"/>
+                            <Entry x:Name="FacebookURLEntry" Placeholder="Facebook" BackgroundColor="White" Keyboard="Url"/>
+                            <Entry x:Name="TwitterURLEntry" Placeholder="Twitter" BackgroundColor="White" Keyboard="Url"/>
+                            <Entry x:Name="InstagramURLEntry" Placeholder="Instagram" BackgroundColor="White" Keyboard="Url"/>
                         </StackLayout>
                     </Frame>
                     <Button FontAttributes="Bold" FontSize="Large" x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>

@@ -61,7 +61,7 @@ namespace MusicGaApp
 
                                 if (DataGet.uniqueUser(email))
                                 {
-                                    DataInput.InputUser(fName, lName, email.ToLower(), password, gender, String.Format("{0:(###) ###-####}", double.Parse(phone)), address, city, state, zip, date, photoUrl);
+                                    DataInput.InputUser(fName, lName, email.ToLower(), password, gender, String.Format("{0:###-###-####}", double.Parse(phone)), address, city, state, zip, date, photoUrl);
 
                                     await DisplayAlert("Registration", "Registration Success", "Ok");
                                     await Navigation.PushModalAsync(new MainPage(), false);
@@ -99,7 +99,7 @@ namespace MusicGaApp
             else
             {
                 await DisplayAlert("Requirement", "All fields are required.", "Ok");
-                await Navigation.PushModalAsync(new LoginPage(), false);
+                await Navigation.PushModalAsync(new RegPage(), false);
             }
         }
         async void SkipProcedure(object sender, EventArgs e)
@@ -111,10 +111,7 @@ namespace MusicGaApp
         {
             if (shown == false)
             {
-                DisplayAlert("Password Requirements", "At least 8 characters" + Environment.NewLine +
-                                                      "Uppercase and Lowercase letters." + Environment.NewLine +
-                                                      "A mixture of letters and numbers." + Environment.NewLine +
-                                                      "Inclusion of at least one special character", "ok");
+                //DisplayAlert("Password Requirements", "At least 8 characters" + Environment.NewLine + "Uppercase and Lowercase letters." + Environment.NewLine + "A mixture of letters and numbers." + Environment.NewLine + "Inclusion of at least one special character", "ok");
                 shown = true;
             }
             else

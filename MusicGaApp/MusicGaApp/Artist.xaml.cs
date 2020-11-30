@@ -20,13 +20,20 @@ namespace MusicGaApp
         {
             InitializeComponent();
 
-            State.ItemsSource = Constants.States;
-            genre.ItemsSource = Constants.Genres;
+            genre.ItemsSource = DataGet.Getgenre();
+            subGenre.ItemsSource = DataGet.Getgenre();
         }
 
         async void Register_Clicked(object sender, EventArgs e)
         {
-            if (State.SelectedIndex == -1 || genre.SelectedIndex == -1 || string.IsNullOrWhiteSpace(stageNameEntry.Text) || string.IsNullOrWhiteSpace(entry_First.Text) || string.IsNullOrWhiteSpace(entry_Last.Text) || string.IsNullOrWhiteSpace(zipEntry.Text) || string.IsNullOrWhiteSpace(cityEntry.Text) || string.IsNullOrWhiteSpace(artistURLEntry.Text))
+            string facebook = "";
+            string instagram = "";
+            string twitter = "";
+            string website = "";
+
+
+
+            if (genre.SelectedIndex == -1 || subGenre.SelectedIndex == -1 || string.IsNullOrWhiteSpace(stageNameEntry.Text) || string.IsNullOrWhiteSpace(emailEntry.Text))
             {
                 await DisplayAlert("Registration", "Please Enter Information.", "OK");
                 return;
@@ -34,16 +41,49 @@ namespace MusicGaApp
             else
             {
                 string stagename = stageNameEntry.Text;
-                string fname = entry_First.Text;
-                string lname = entry_Last.Text;
-                string street = streetEntry.Text;
-                string city = cityEntry.Text;
-                string state = State.SelectedItem.ToString();
-                string zip = zipEntry.Text;
-                string website = artistURLEntry.Text;
+                string email = emailEntry.Text;
+
+                if (string.IsNullOrWhiteSpace(FacebookURLEntry.Text))
+                {
+                    website = "none";
+                }
+                else
+                {
+                    website = artistURLEntry.Text;
+
+                }
+
+                if (string.IsNullOrWhiteSpace(FacebookURLEntry.Text))
+                {
+                    facebook = "none";
+                }
+                else
+                {
+                    facebook = FacebookURLEntry.Text;
+                }
+
+                if (string.IsNullOrWhiteSpace(InstagramURLEntry.Text))
+                {
+                    instagram = "none";
+                }
+                else
+                {
+                    instagram = InstagramURLEntry.Text;
+                }
+
+                if (string.IsNullOrWhiteSpace(TwitterURLEntry.Text))
+                {
+                    twitter = "none";
+                }
+                else
+                {
+                    twitter = TwitterURLEntry.Text;
+                }
+
                 Genre = genre.SelectedItem.ToString();
                 string subgenre = subGenre.SelectedItem.ToString();
-                string Bio = BioEdt.Text;
+
+                DataInput.InputArtist(stagename, Genre, subgenre, email, instagram, facebook, twitter, website);
 
                 await DisplayAlert("Registration", "Your Registration will be reviewed.", "OK");
                 return;
@@ -59,94 +99,7 @@ namespace MusicGaApp
         {
             Genre = genre.SelectedItem.ToString();
 
-            if (Genre.Equals("Avant_Garde"))
-            {
-                subGenre.ItemsSource = Constants.Avant_Garde;
-            }
-            else if (Genre.Equals("Blues"))
-            {
-                subGenre.ItemsSource = Constants.Blues;
-            }
-            else if (Genre.Equals("Children"))
-            {
-                subGenre.ItemsSource = Constants.Children;
-            }
-            else if (Genre.Equals("Classical"))
-            {
-                subGenre.ItemsSource = Constants.Classical;
-            }
-            else if (Genre.Equals("Comedy"))
-            {
-                subGenre.ItemsSource = Constants.Comedy;
-            }
-            else if (Genre.Equals("Country"))
-            {
-                subGenre.ItemsSource = Constants.Country;
-            }
-            else if (Genre.Equals("Easy Listening"))
-            {
-                subGenre.ItemsSource = Constants.Easy_Listening;
-            }
-            else if (Genre.Equals("Electronic"))
-            {
-                subGenre.ItemsSource = Constants.Electronic;
-            }
-            else if (Genre.Equals("Folk"))
-            {
-                subGenre.ItemsSource = Constants.Folk;
-            }
-            else if (Genre.Equals("Holiday"))
-            {
-                subGenre.ItemsSource = Constants.Holiday;
-            }
-            else if (Genre.Equals("International"))
-            {
-                subGenre.ItemsSource = Constants.International;
-            }
-            else if (Genre.Equals("Jazz"))
-            {
-                subGenre.ItemsSource = Constants.Jazz;
-            }
-            else if (Genre.Equals("Latin"))
-            {
-                subGenre.ItemsSource = Constants.Latin;
-            }
-            else if (Genre.Equals("New Age"))
-            {
-                subGenre.ItemsSource = Constants.New_Age;
-            }
-            else if (Genre.Equals("Pop"))
-            {
-                subGenre.ItemsSource = Constants.Pop;
-            }
-            else if (Genre.Equals("R&B"))
-            {
-                subGenre.ItemsSource = Constants.RandB;
-            }
-            else if (Genre.Equals("Reggae"))
-            {
-                subGenre.ItemsSource = Constants.Reggae;
-            }
-            else if (Genre.Equals("Religious"))
-            {
-                subGenre.ItemsSource = Constants.Religious;
-            }
-            else if (Genre.Equals("Rock"))
-            {
-                subGenre.ItemsSource = Constants.Rock;
-            }
-            else if (Genre.Equals("Spoken"))
-            {
-                subGenre.ItemsSource = Constants.Spoken;
-            }
-            else if (Genre.Equals("Stage"))
-            {
-                subGenre.ItemsSource = Constants.Stage;
-            }
-            else if (Genre.Equals("Vocal"))
-            {
-                subGenre.ItemsSource = Constants.Vocal;
-            }
+            subGenre.ItemsSource = DataGet.Getsubgenre(Genre);
         }
     }
 }

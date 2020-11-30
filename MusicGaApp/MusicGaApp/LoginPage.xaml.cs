@@ -30,7 +30,7 @@ namespace MusicGaApp
             User user = new User(entry_Email.Text, entry_Password.Text);
             if(user.checkInfo())
             {
-                await DisplayAlert("Login", "Login Success "+ User.Id +"", "Ok");
+                await DisplayAlert("Login", "Login Success ", "Ok");
                 await Navigation.PushModalAsync(new MainPage(), false);
             }
             else

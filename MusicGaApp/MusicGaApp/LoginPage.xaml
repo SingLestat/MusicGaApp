@@ -4,7 +4,7 @@
              x:Class="MusicGaApp.LoginPage"
              BackgroundImageSource="Background2.jpp">
     <ContentPage.Content>
-        <StackLayout x:Name="MasterLayout">
+        <StackLayout x:Name="MasterLayout" VerticalOptions="Center">
             <StackLayout x:Name="LoginForm" VerticalOptions="StartAndExpand">
                 <StackLayout.Padding>
                     <OnIdiom x:TypeArguments="Thickness">
@@ -12,13 +12,12 @@
                         <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
                     </OnIdiom>
                 </StackLayout.Padding>
-                <StackLayout>
-                    <Image Source="Publication1.png"></Image>
-                </StackLayout>
-                <Frame CornerRadius="10">
+                <Image Source="gaicon.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="200"/>
+                <Label Text="Ga Music Directory" TextColor="White" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Frame CornerRadius="10"> 
                     <StackLayout x:Name="EmailGroup">
                         <Entry x:Name="entry_Email" Placeholder="Email"/>
-                        <Entry x:Name="entry_Password" Placeholder="Password"/>
+                        <Entry x:Name="entry_Password" Placeholder="Password" IsPassword="True"/>
                     </StackLayout>
                 </Frame>
                 <Button x:Name="btn_Login" Text="Login" TextColor="White"  

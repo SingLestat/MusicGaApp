@@ -19,8 +19,19 @@ namespace MusicGaApp
         public ItemDetail(string selectedItem, string Table, string ColName)
         {
             InitializeComponent();
-
-            ItemEntryView.ItemsSource = DataGet.GetDatabaseList(selectedItem,Table,ColName);
+            if (Table == "Venue")
+            {
+                ItemEntryView.ItemsSource = DataGet.GetDatabaseListVenue(selectedItem, Table, ColName);
+            }
+            else if (Table == "Artist")
+            {
+                ItemEntryView.ItemsSource = DataGet.GetDatabaseListArtist(selectedItem, Table, ColName);
+            }
+            else
+            {
+               DisplayAlert("Error", "Error", "OK");
+               Navigation.PushModalAsync(new Directory(), false);
+            }
         }
     }
 }

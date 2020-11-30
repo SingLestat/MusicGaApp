@@ -10,15 +10,21 @@ namespace MusicGaApp.ViewModels
 
         public static bool uniqueUser(string email)
         {
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM [User] WHERE EMAIL='" + email + "'", Constants.conn);
+            SqlConnection conn = new SqlConnection(Constants.conn);
+
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM [User] WHERE EMAIL='" + email + "'", conn);
             DataTable dt = new DataTable(); //this is creating a virtual table  
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
-                return true;
+                conn.Close();
+                return false;
             }
             else
-                return false;
+            {
+                conn.Close();
+                return true;
+            }
         }
 
         public static bool IsValidEmail(string email)
@@ -38,11 +44,34 @@ namespace MusicGaApp.ViewModels
         {
             List<string> list = new List<string>();
 
-            using (Constants.conn)
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
             {
-                Constants.conn.Open();
+               conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT " + colName + " FROM [dbo].[" + table + "]", Constants.conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT " + colName + " FROM [dbo].[" + table + "]", conn))
+                {
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            list.Add(dr[0].ToString());
+                        }
+
+                    }
+                }
+            }
+            return list;
+        }
+
+        public static List<string> GetIndustry()
+        {
+            List<string> list = new List<string>();
+
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT MUSIC_BUSINESS_SUBCATEGORY FROM [dbo].[Business]", conn))
                 {
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -52,19 +81,61 @@ namespace MusicGaApp.ViewModels
                         }
                     }
                 }
-
-                Constants.conn.Close();
             }
             return list;
         }
 
-        public static List<string> GetDatabaseList(string selectedItem, string Table, string ColName)
+        public static List<string> Getgenre()
+        {
+            List<string> list = new List<string>();
+
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT DISTINCT MUSIC_GENRE FROM [dbo].[Music]", conn))
+                {
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            list.Add(dr[0].ToString());
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public static List<string> Getsubgenre(string genre)
+        {
+            List<string> list = new List<string>();
+
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT MUSIC_SUB_GENRE FROM [dbo].[Music] WHERE MUSIC_GENRE ='" + genre + "'", conn))
+                {
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            list.Add(dr[0].ToString());
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public static List<string> GetDatabaseListVenue(string selectedItem, string Table, string ColName)
         {
             List<string> list = new List<string>();
             List<string> listCol = new List<string>();
             List<string> listInfo = new List<string>();
 
-            using (SqlConnection conn = new SqlConnection("Data Source = gamusicserver.database.windows.net; Initial Catalog = GaMusicDB; User ID = GGteam4; Password = P@ssword!; Connect Timeout = 60; Encrypt = True; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;"))
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
             {
                 conn.Open();
 
@@ -82,10 +153,7 @@ namespace MusicGaApp.ViewModels
                     }
                 }
 
-                conn.Close();
-
-                using (SqlConnection conn1 = new SqlConnection("Data Source = gamusicserver.database.windows.net; Initial Catalog = GaMusicDB; User ID = GGteam4; Password = P@ssword!; Connect Timeout = 60; Encrypt = True; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;"))
-
+                using (SqlConnection conn1 = new SqlConnection(Constants.conn))
                 {
                     conn1.Open();
 
@@ -102,14 +170,68 @@ namespace MusicGaApp.ViewModels
 
                     conn1.Close();
                 }
+                conn.Close();
 
-                for (int x = 0; x < listCol.Count; x++)
-                {
-                    list.Add(listCol[x].ToString() + ": " + listInfo[x].ToString());
-                }
+                list.Add("Venue Name: " + listInfo[1].ToString());
+                list.Add("Owner's Name: " + listInfo[2].ToString() + " " + listInfo[3].ToString());
+                list.Add("Phone Number: " + listInfo[4].ToString());
+                list.Add("Email: " + listInfo[5].ToString());
+                list.Add("Website: " + listInfo[6].ToString());
+                list.Add("Venue's Address: " + listInfo[7].ToString() + " " + listInfo[8].ToString() + ", " + listInfo[9].ToString() + " " + listInfo[10].ToString());
             }
             return list;
+        }
 
+        public static List<string> GetDatabaseListArtist(string selectedItem, string Table, string ColName)
+        {
+            List<string> list = new List<string>();
+            List<string> listCol = new List<string>();
+            List<string> listInfo = new List<string>();
+
+            using (SqlConnection conn = new SqlConnection(Constants.conn))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[" + Table + "] WHERE " + ColName + " = '" + selectedItem + "'", conn))
+                {
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            for (int c = 0; c < dr.FieldCount; c++)
+                            {
+                                listInfo.Add(dr[c].ToString());
+                            }
+                        }
+                    }
+                }
+                using (SqlConnection conn1 = new SqlConnection(Constants.conn))
+                {
+                    conn1.Open();
+                    using (SqlCommand cmd = new SqlCommand("select column_name from information_schema.columns where table_name = '" + Table + "'", conn1))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                listCol.Add(dr[0].ToString());
+                            }
+                        }
+                    }
+
+                    conn1.Close();
+                }
+                conn.Close();
+
+                list.Add("Artist Name: " + listInfo[1].ToString());
+                list.Add("Genre: " + listInfo[2].ToString() + " Sub-Genre:" + listInfo[3].ToString());
+                list.Add("Email: " + listInfo[4].ToString());
+                list.Add("Instagram: " + listInfo[5].ToString());
+                list.Add("Facebook: " + listInfo[6].ToString());
+                list.Add("Twitter: " + listInfo[7].ToString());
+                list.Add("Personal Website: " + listInfo[8].ToString());
+            }
+            return list;
         }
     }
 }

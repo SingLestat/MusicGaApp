@@ -18,6 +18,8 @@ namespace MusicGaApp
         public Venue()
         {
             InitializeComponent();
+
+            State.ItemsSource = Constants.States;
         }
         async void Register_Clicked(object sender, EventArgs e)
         {
@@ -39,7 +41,7 @@ namespace MusicGaApp
                 string zip = zipEntry.Text;
                 string website = urlEntry.Text;
 
-                DataInput.InputVenue(venueName, fname, lname, email, phone, website, street, city, state, zip);
+                DataInput.InputVenue(venueName, fname, lname, email, website, phone, street, city, state, zip);
 
                 await DisplayAlert("Registration", "Your Registration will be reviewed.", "OK");
 
