@@ -44,7 +44,7 @@ namespace MusicGaApp
                 string state = State.SelectedItem.ToString();
                 string zip = zipEntry.Text;
                 DateTime date = DateOfBirth.Date;
-                string photoUrl = urlEntry.Text;
+                string photoUrl = "none";
                 string email = entry_Email.Text;
 
                 if (DataGet.IsValidEmail(email))
@@ -64,7 +64,7 @@ namespace MusicGaApp
                                     DataInput.InputUser(fName, lName, email.ToLower(), password, gender, String.Format("{0:###-###-####}", double.Parse(phone)), address, city, state, zip, date, photoUrl);
 
                                     await DisplayAlert("Registration", "Registration Success", "Ok");
-                                    await Navigation.PushModalAsync(new MainPage(), false);
+                                    await Navigation.PushModalAsync(new LoginPage(), false);
                                 }
                                 else
                                 {
@@ -101,10 +101,6 @@ namespace MusicGaApp
                 await DisplayAlert("Requirement", "All fields are required.", "Ok");
                 await Navigation.PushModalAsync(new RegPage(), false);
             }
-        }
-        async void SkipProcedure(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new MainPage(), false);
         }
 
         private void entry_Password_TextChanged(object sender, TextChangedEventArgs e)

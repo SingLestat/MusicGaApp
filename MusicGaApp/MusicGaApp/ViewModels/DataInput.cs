@@ -31,14 +31,14 @@ namespace MusicGaApp
 
             SqlCommand sqlCommand = new SqlCommand(insert, conn);
 
-            sqlCommand.Parameters.AddWithValue("@id", randomNum.Next());
+            sqlCommand.Parameters.AddWithValue("@id", DataGet.nextTABLEid("User"));
             sqlCommand.Parameters.AddWithValue("@email", email);
             sqlCommand.Parameters.AddWithValue("@password", password);
             sqlCommand.Parameters.AddWithValue("@firstName", fName);
             sqlCommand.Parameters.AddWithValue("@lastName", lName);
             sqlCommand.Parameters.AddWithValue("@gender", gender);
-            sqlCommand.Parameters.AddWithValue("@DOB", date);
-            sqlCommand.Parameters.AddWithValue("@phone", phone);
+            sqlCommand.Parameters.AddWithValue("@DOB", String.Format("{0:yyyy-MM-dd}", date));
+            sqlCommand.Parameters.AddWithValue("@phone", String.Format("{0:###-###-####}",phone));
             sqlCommand.Parameters.AddWithValue("@photoURL", photoUrl);
             sqlCommand.Parameters.AddWithValue("@street", address);
             sqlCommand.Parameters.AddWithValue("@city", city);
@@ -70,7 +70,7 @@ namespace MusicGaApp
 
             SqlCommand sqlCommand = new SqlCommand(insert, conn);
 
-            sqlCommand.Parameters.AddWithValue("@id", randomNum.Next());
+            sqlCommand.Parameters.AddWithValue("@id", DataGet.nextTABLEid("Artist"));
             sqlCommand.Parameters.AddWithValue("@artist_name", Stagename);
             sqlCommand.Parameters.AddWithValue("@music_genre", music_genre);
             sqlCommand.Parameters.AddWithValue("@music_sub_genre", music_sub_genre);
@@ -104,7 +104,7 @@ namespace MusicGaApp
 
             SqlCommand sqlCommand = new SqlCommand(insert, conn);
 
-            sqlCommand.Parameters.AddWithValue("@id", randomNum.Next());
+            sqlCommand.Parameters.AddWithValue("@id", DataGet.nextTABLEid("Venue"));
             sqlCommand.Parameters.AddWithValue("@venueName", venueName);
             sqlCommand.Parameters.AddWithValue("@firstName", fname);
             sqlCommand.Parameters.AddWithValue("@lastName", lname);
@@ -115,7 +115,7 @@ namespace MusicGaApp
             sqlCommand.Parameters.AddWithValue("@city", city);
             sqlCommand.Parameters.AddWithValue("@state", state);
             sqlCommand.Parameters.AddWithValue("@Zipcode", zip);
-            sqlCommand.Parameters.AddWithValue("@userId", User.Id);
+            sqlCommand.Parameters.AddWithValue("@userId", "1");
 
             InsertConnection(sqlCommand);
 

@@ -12,9 +12,7 @@
                 </StackLayout>
             </Frame>
             <Button FontAttributes="Bold" FontSize="Large" x:Name="ArtistRegisterbtn" Text="Artist Register" TextColor="White" BackgroundColor = "BlueViolet"  CornerRadius="10" Clicked="ArtistButton_Clicked"/>
-                <Button FontAttributes="Bold" FontSize="Large" x:Name="VenueRegisterbtn" Text="Venue Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="VenueButton_Clicked"/>
-                <Button FontAttributes="Bold" FontSize="Large" x:Name="EventRegisterbtn" Text="Event Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="EventButton_Clicked"/>
-            <Button FontAttributes="Bold" FontSize="Large" x:Name="CompanyRegisterbtn" Text="Company Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="CompanyButton_Clicked"/>
+            <Button FontAttributes="Bold" FontSize="Large" x:Name="VenueRegisterbtn" Text="Venue Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="VenueButton_Clicked"/>
             <Button FontAttributes="Bold" FontSize="Large" x:Name="Directorybtn" Text="Directory" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Directorybtn_Clicked"/>
         </StackLayout>
     </StackLayout>

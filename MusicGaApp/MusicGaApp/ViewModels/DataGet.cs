@@ -27,6 +27,19 @@ namespace MusicGaApp.ViewModels
             }
         }
 
+        public static int nextTABLEid(string table)
+        {
+            SqlConnection conn = new SqlConnection(Constants.conn);
+
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM [" + table + "]", conn);
+            DataTable dt = new DataTable(); //this is creating a virtual table  
+             
+            sda.Fill(dt);
+            return  (int)dt.Rows[0][0] +  1;
+
+        }
+
+
         public static bool IsValidEmail(string email)
         {
             try
@@ -173,11 +186,11 @@ namespace MusicGaApp.ViewModels
                 conn.Close();
 
                 list.Add("Venue Name: " + listInfo[1].ToString());
-                list.Add("Owner's Name: " + listInfo[2].ToString() + " " + listInfo[3].ToString());
+                list.Add("Owner's Name: " + listInfo[2].ToString());
                 list.Add("Phone Number: " + listInfo[4].ToString());
-                list.Add("Email: " + listInfo[5].ToString());
-                list.Add("Website: " + listInfo[6].ToString());
-                list.Add("Venue's Address: " + listInfo[7].ToString() + " " + listInfo[8].ToString() + ", " + listInfo[9].ToString() + " " + listInfo[10].ToString());
+                list.Add("Email: " + listInfo[3].ToString());
+                list.Add("Website: " + listInfo[5].ToString());
+                list.Add("Venue's Address: " + listInfo[6].ToString() + " " + listInfo[7].ToString() + ", " + listInfo[8].ToString() + " " + listInfo[9].ToString());
             }
             return list;
         }

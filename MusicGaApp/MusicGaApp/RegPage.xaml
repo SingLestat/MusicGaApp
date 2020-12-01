@@ -31,7 +31,6 @@
                             <Picker x:Name="State" Title="State" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
                             <Entry x:Name="zipEntry" Placeholder="Zip Code" MaxLength="5" Keyboard="Numeric" BackgroundColor="White"/>
                             <DatePicker x:Name="DateOfBirth" Format="yyyy/MM/dd"  BindingContextChanged="eventDate_BindingContextChanged"/>
-                            <Entry x:Name="urlEntry" Placeholder="Photo Link" BackgroundColor="White" Keyboard="Url"/>
                             <Entry x:Name="entry_Email" Placeholder="Email"/>
                             <Entry x:Name="entry_Password" Placeholder="Password" IsPassword="True" TextChanged="entry_Password_TextChanged"/>
                             <Entry x:Name="entry_ReEnter" Placeholder="Re-Enter Password" IsPassword="True"/>
@@ -40,7 +39,6 @@
                     <Button x:Name="btn_Reg" Text="Register" TextColor="White"  
                             FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                             BackgroundColor="BlueViolet" CornerRadius="10" Clicked="RegProcedure"/>
-                    <Button FontAttributes="Bold" FontSize="Large" x:Name="Registerbtn" Text="Skip" Clicked="SkipProcedure" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

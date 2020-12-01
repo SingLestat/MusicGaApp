@@ -19,8 +19,12 @@
                             <Entry x:Name="InstagramURLEntry" Placeholder="Instagram" BackgroundColor="White" Keyboard="Url"/>
                         </StackLayout>
                     </Frame>
-                    <Button FontAttributes="Bold" FontSize="Large" x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>
-                    <Button FontAttributes="Bold" FontSize="Large" x:Name="Back" Text="Back" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Back_Clicked"/>
+                    <Frame BackgroundColor="Black">
+                        <StackLayout>
+                            <Button FontAttributes="Bold" FontSize="Large" x:Name="Register" Text="Register" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Register_Clicked"/>
+                            <Button FontAttributes="Bold" FontSize="Large" x:Name="Back" Text="Back" TextColor="White" BackgroundColor="BlueViolet" CornerRadius="10" Clicked="Back_Clicked"/>
+                        </StackLayout>
+                    </Frame>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
